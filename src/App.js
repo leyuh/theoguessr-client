@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+
+  const [verseData, setVerseData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let res = await axios.get("http://localhost:3001/random-verse/");
+        setVerseData(res.data.verse.content);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchData();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app" dangerouslySetInnerHTML={{__html: verseData}}>
     </div>
   );
 }
