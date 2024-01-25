@@ -1,7 +1,15 @@
+
 div {
     border-radius: 15px;
 }
 
+#logo {
+    height: 80px;
+    width: 80px;
+    position: relative;
+    left: calc(50% - 40px);
+    top: 40px;
+}
 
 #verse-div {
     height: 95px;
@@ -35,6 +43,16 @@ div {
     background-color: #6cbca0;
 
     position: relative;
-    left: calc(50% - 420px);
+    left: calc(50% - 415px);
 }
 
+#watermark {
+    text-align: right;
+    font-size: 16px;
+    font-weight: 100;
+    margin: 5px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    color: #003925;
+}

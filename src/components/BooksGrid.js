@@ -4,7 +4,8 @@ const BooksGrid = (props) => {
     const {
         title,
         booksNames,
-        setBookGuess={setBookGuess}
+        setBookGuess,
+        verseData
     } = props;
 
     return <>
@@ -15,6 +16,7 @@ const BooksGrid = (props) => {
                 className="chapter-div" 
                 key={i} 
                 onClick={() => {
+                  if (!verseData) return;
                     console.log(val);
                     setBookGuess(val);
                 }

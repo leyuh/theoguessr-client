@@ -6,6 +6,8 @@ import axios from "axios";
 import { OT, NT } from "./Books.js";
 import BooksGrid from "./components/BooksGrid.js";
 
+import Logo from "./logo.png";
+
 function App() {
 
   const [verseData, setVerseData] = useState(null);
@@ -26,25 +28,32 @@ function App() {
     return (accuracy*100).toFixed(0);
   }
 
+  const fetchVerseData = async () => {
+    try {
+      let res = await axios.get("http://localhost:3001/random-verse/");
+
+      console.log(res.data);
+      setVerseData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    localStorage.getItem("verseData") && setVerseData(JSON.parse(localStorage.getItem("verseData")));
+  }, [])
+
+  useEffect(() => {
+    if (verseData) {
+      localStorage.setItem("verseData", JSON.stringify(verseData));
+    }
+  }, [verseData])
 
   // reset guessing
   useEffect(() => {
     if (showGuessDiv) {
       setBookGuess(null);
-
-      const fetchData = async () => {
-        try {
-          let res = await axios.get("http://localhost:3001/random-verse/");
-
-          setVerseData(res.data);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-  
-      fetchData();
     }
-    
   }, [showGuessDiv])
 
   // show results on guess
@@ -56,6 +65,8 @@ function App() {
 
   return (
     <div id="app">
+
+      <img id="logo" src={Logo}/>
 
       {showGuessDiv ? 
         // GUESSING
@@ -70,11 +81,15 @@ function App() {
               title="Old Testament"
               booksNames={OT}
               setBookGuess={setBookGuess}
+              verseData={verseData}
+              fetchVerseData={fetchVerseData}
             />
             <BooksGrid 
               title="New Testament"
               booksNames={NT}
               setBookGuess={setBookGuess}
+              verseData={verseData}
+              fetchVerseData={fetchVerseData}
             />
 
           </div>
@@ -89,10 +104,19 @@ function App() {
           <h3>{verseData.chapter.reference}</h3>
           <p>{verseData.chapter.content}</p>
 
+          <button onClick={() => {
+            setVerseData(null);
+            fetchVerseData();
+            setShowGuessDiv(true);
+          }}>
+            Continue
+          </button>
+
         </div>
       }
 
       
+    <h5 id="watermark">leyuh</h5>
     </div>
   );
 }

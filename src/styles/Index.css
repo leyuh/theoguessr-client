@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Black+Ops+One&family=Niconne&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;600&family=Trispace:wght@500&display=swap');
+
 
 #root {
     background-color: #d1eee3;
@@ -7,5 +9,5 @@
     height: 100%;
     width: 100%;
     border-radius: 0px;
-
+    font-family: "Times New Roman";
 }
