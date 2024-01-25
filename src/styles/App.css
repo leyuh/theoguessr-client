@@ -1,0 +1,40 @@
+div {
+    border-radius: 15px;
+}
+
+
+#verse-div {
+    height: 95px;
+    text-align: center;
+    margin: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#verse-div > h1 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+#chapter-selection-div {
+    padding: 5px;
+    border: 10px solid #003925;
+    width: 800px;
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #6cbca0;
+
+    position: relative;
+    left: calc(50% - 420px);
+}
+

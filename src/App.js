@@ -1,3 +1,5 @@
+import "./styles/App.css";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -60,7 +62,7 @@ function App() {
         <div id="guess-div">
 
           <div id="verse-div">
-            {verseData?.verse.content}
+            <h1>"{verseData?.verse.content}"</h1>
           </div>
 
           <div id="chapter-selection-div">
@@ -81,8 +83,11 @@ function App() {
         // RESULTS
         <div id="results-div">
           <h1 id="accuracy-label">{calcAccuracy(bookGuess, verseData.book.name)}%</h1>
-          <h1 id="reference-label">{verseData?.verse.reference}</h1>
+          <h1 id="reference-label">{verseData.verse.reference}</h1>
           <h3 id="you-guessed-label">You guessed: {bookGuess}</h3>
+
+          <h3>{verseData.chapter.reference}</h3>
+          <p>{verseData.chapter.content}</p>
 
         </div>
       }
