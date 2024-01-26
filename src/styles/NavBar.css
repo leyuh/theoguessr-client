@@ -1,0 +1,18 @@
+#nav-div {
+    height: 30px;
+    width: 200px;
+    position: fixed;
+    right: 0px;
+    margin: 15px;
+}
+
+#nav-div > * {
+    margin-right: 10px;
+    margin-left: 25px;
+    right: 0px;
+    position: relative;
+    float: right;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
