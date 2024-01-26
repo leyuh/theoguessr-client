@@ -14,25 +14,29 @@ function App() {
   const [showGuessDiv, setShowGuessDiv] = useState(true);
   const [bookGuess, setBookGuess] = useState(null);
 
-  const calcAccuracy = (bookGuessed, correctBook) => {
+  const calcPoints = (bookGuessed, correctBook) => {
     let books = [...OT, ...NT];
 
-    let indexGuessed = books.indexOf(bookGuessed); // 40
-    let indexCorrect = books.indexOf(correctBook); // 40
+    let indexGuessed = books.indexOf(bookGuessed);
+    let indexCorrect = books.indexOf(correctBook);
 
-    let booksOff = Math.abs(indexGuessed - indexCorrect); // 0
-    let mostPossibleBooksOff = Math.max(indexCorrect, (65 - indexCorrect)); // 40
+    // wrong testament, no points
+    if (indexCorrect <= 38 && indexGuessed > 38) return 0;
+    if (indexCorrect > 38 && indexGuessed <= 38) return 0;
 
-    let accuracy = (mostPossibleBooksOff - booksOff) / mostPossibleBooksOff; // 1
+    let booksOff = Math.abs(indexGuessed - indexCorrect);
 
-    return (accuracy*100).toFixed(0);
+    let points = 1000 - (booksOff*25);
+
+    return points;
   }
 
   const fetchVerseData = async () => {
     try {
       let res = await axios.get("http://localhost:3001/random-verse/");
-      
+
       setVerseData(res.data);
+      console.log(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +76,7 @@ function App() {
         <div id="guess-div">
 
           <div id="verse-div">
-            <h1>"{verseData?.verse.content}"</h1>
+            <h1>"{verseData?.verseContext}"</h1>
           </div>
 
           <div id="chapter-selection-div">
@@ -96,12 +100,14 @@ function App() {
       : 
         // RESULTS
         <div id="results-div">
-          <h1 id="accuracy-label">{calcAccuracy(bookGuess, verseData.book.name)}%</h1>
-          <h1 id="reference-label">{verseData.verse.reference}</h1>
-          <h3 id="you-guessed-label">You guessed: {bookGuess}</h3>
 
           <h3>{verseData.chapter.reference}</h3>
-          <p>{verseData.chapter.content}</p>
+          <div id="chapter-context-div">
+            <p>{verseData.chapter.content}</p>
+          </div>
+
+          <h1 id="points-label">{calcPoints(bookGuess, verseData.book.name)}</h1>
+          <h3 id="you-guessed-label">You guessed: {bookGuess}</h3>
 
           <button onClick={() => {
             setVerseData(null);
