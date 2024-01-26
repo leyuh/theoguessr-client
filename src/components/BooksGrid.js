@@ -17,7 +17,6 @@ const BooksGrid = (props) => {
                 key={i} 
                 onClick={() => {
                   if (!verseData) return;
-                    console.log(val);
                     setBookGuess(val);
                 }
             }>

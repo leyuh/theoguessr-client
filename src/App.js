@@ -31,8 +31,7 @@ function App() {
   const fetchVerseData = async () => {
     try {
       let res = await axios.get("http://localhost:3001/random-verse/");
-
-      console.log(res.data);
+      
       setVerseData(res.data);
     } catch (err) {
       console.log(err);
