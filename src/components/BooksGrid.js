@@ -12,7 +12,7 @@ const BooksGrid = (props) => {
         <h1 className="section-title">{title}</h1>
         <div className="chapters-grid">
           {booksNames.map((val, i) => {
-            return <span 
+            return <button 
                 className="chapter-div" 
                 key={i} 
                 onClick={() => {
@@ -21,7 +21,7 @@ const BooksGrid = (props) => {
                 }
             }>
               <h1>{val.substring(1, 2) === " " ? val.substring(0, 5) : val.substring(0, 3)}</h1>
-            </span>
+            </button>
           })}
         </div>
     </>

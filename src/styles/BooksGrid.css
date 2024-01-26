@@ -13,10 +13,11 @@
 
 .chapter-div {
     display: inline-block;
+    font-family: inherit;
     background-color: #003925;
     border: 2.5px solid #f8fcfb;
     width: 100px;
-    height: 35px;
+    height: 40px;
     border-radius: 5px;
     text-align: center;
     color: #f8fcfb;
@@ -31,4 +32,22 @@
     text-align: center;
     position: relative;
     top: -10px;
+}
+
+@media (max-height: 850px) or (max-width: 945px) {
+    .chapters-grid {
+        grid-template-columns: repeat(5, 105px);
+    }
+}
+
+@media (max-height: 600px) or (max-width: 650px) {
+    .chapters-grid {
+        grid-template-columns: repeat(3, 105px);
+    }
+}
+
+@media (max-height: 500px) {
+    .chapters-grid {
+        grid-template-columns: repeat(5, 105px);
+    }
 }

@@ -76,7 +76,7 @@ function App() {
         <div id="guess-div">
 
           <div id="verse-div">
-            <h1>"{verseData?.verseContext}"</h1>
+            <h1>{verseData ? `"${verseData?.verseContextNoNumbers.replaceAll("¶", ``)}"` : "..."}</h1>
           </div>
 
           <div id="chapter-selection-div">
@@ -101,21 +101,32 @@ function App() {
         // RESULTS
         <div id="results-div">
 
-          <h3>{verseData.chapter.reference}</h3>
-          <div id="chapter-context-div">
-            <p>{verseData.chapter.content}</p>
+          <div id="continue-div">
+            <h1 id="points-label">{calcPoints(bookGuess, verseData.book.name)}</h1>
+            <h3 id="you-guessed-label">You guessed: {bookGuess}</h3>
+
           </div>
 
-          <h1 id="points-label">{calcPoints(bookGuess, verseData.book.name)}</h1>
-          <h3 id="you-guessed-label">You guessed: {bookGuess}</h3>
+          
 
-          <button onClick={() => {
+          <div id="chapter-context-div">
+            <h1>{verseData.chapter.reference}</h1>
+            <p>
+              <span>{(verseData.chapter.content.substr(0, verseData.chapter.content.indexOf(verseData.verseContext))).replaceAll("¶", "\n\t")}</span>
+              <span><mark>{verseData.verseContext.replaceAll("¶", `\n\t`)}</mark></span>
+              <span>{(verseData.chapter.content.substr((verseData.chapter.content.indexOf(verseData.verseContext)) + verseData.verseContext.length)).replaceAll("¶", "\n\t")}</span>
+            </p>
+            
+          </div>
+
+          <button id="continue-btn" onClick={() => {
             setVerseData(null);
             fetchVerseData();
             setShowGuessDiv(true);
           }}>
             Continue
           </button>
+          
 
         </div>
       }
