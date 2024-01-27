@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useRevalidator } from "react-router-dom";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 import axios from "axios";
@@ -10,12 +10,17 @@ import BooksGrid from "../components/BooksGrid.js";
 
 const Home = (props) => {
     const {
-
+        cookies,
+        setCookies
     } = props;
 
     const [verseData, setVerseData] = useState(null);
     const [showGuessDiv, setShowGuessDiv] = useState(true);
     const [bookGuess, setBookGuess] = useState(null);
+
+    const chapterContextRef = useRef(null);
+
+
 
     const calcPoints = (bookGuessed, correctBook) => {
         let books = [...OT, ...NT];
@@ -36,36 +41,69 @@ const Home = (props) => {
 
     const fetchVerseData = async () => {
         try {
-        let res = await axios.get("http://localhost:3001/random-verse/");
+            let res = await axios.get("http://localhost:3001/random-verse/");
 
-        setVerseData(res.data);
-        console.log(res.data);
+            setVerseData(res.data);
+            console.log(res.data);
         } catch (err) {
-        console.log(err);
+            console.log(err);
         }
     }
 
     useEffect(() => {
         localStorage.getItem("verseData") && setVerseData(JSON.parse(localStorage.getItem("verseData")));
+        localStorage.getItem("bookGuess") && setBookGuess(localStorage.getItem("bookGuess"));
     }, [])
 
     useEffect(() => {
         if (verseData) {
-        localStorage.setItem("verseData", JSON.stringify(verseData));
+            localStorage.setItem("verseData", JSON.stringify(verseData));
         }
     }, [verseData])
+
 
     // reset guessing
     useEffect(() => {
         if (showGuessDiv) {
-        setBookGuess(null);
+            setBookGuess(null);
         }
+        if (chapterContextRef.current) {
+            chapterContextRef.current.scrollTop = 0;
+        }
+
     }, [showGuessDiv])
+
+    useEffect(() => {
+        if (localStorage.getItem("bookGuess") !== "null") {
+            setVerseData(null);
+            fetchVerseData();
+        }
+
+        if (!cookies["access_token"]) {
+          localStorage.setItem("userId", "");
+        }
+
+    }, [])
+
 
     // show results on guess
     useEffect(() => {
+        localStorage.setItem("bookGuess", bookGuess);
         if (bookGuess) {
-        setShowGuessDiv(false);
+
+            setShowGuessDiv(false);
+
+            // update db
+            if (cookies["access_token"]) {
+                axios.put("http://localhost:3001/user/post-points/", {
+                    _id: localStorage.getItem("userId"),
+                    newPoints: calcPoints(bookGuess, verseData.book.name)
+                }, {
+                    headers: {
+                        "authorization": cookies.access_token
+                    }
+                })
+            }
         }
     }, [bookGuess])
     
@@ -92,6 +130,7 @@ const Home = (props) => {
                     setBookGuess={setBookGuess}
                     verseData={verseData}
                     fetchVerseData={fetchVerseData}
+                    cookies={cookies}
                 />
 
             </div>
@@ -107,7 +146,7 @@ const Home = (props) => {
 
             
 
-            <div id="chapter-context-div">
+            <div id="chapter-context-div" ref={chapterContextRef}>
                 <h1>{verseData.chapter.reference}</h1>
                 <p>
                     <span>{(verseData.chapter.content.substr(0, verseData.chapter.content.indexOf(verseData.verseContext))).replaceAll("¶", "\n\t")}</span>
@@ -121,6 +160,7 @@ const Home = (props) => {
                 setVerseData(null);
                 fetchVerseData();
                 setShowGuessDiv(true);
+                setBookGuess(null);
             }}>
                 Continue
             </button>

@@ -15,7 +15,6 @@ const Navbar = (props) => {
     const logout = () => {
         setCookies("access_token", "");
         window.localStorage.removeItem("userId");
-        navigate("/auth");
     }
 
     return <div id="nav-div">

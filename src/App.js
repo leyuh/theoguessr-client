@@ -13,7 +13,7 @@ import Logo from "./logo.png";
 
 function App() {
 
-  
+  const [cookies, setCookies] = useCookies(["access_token"]);
 
   return (
     <div id="app">
@@ -25,7 +25,10 @@ function App() {
         <img id="logo" src={Logo}/>
 
         <Routes>
-          <Route path="/" element={<Home />}/>
+          <Route path="/" element={<Home 
+            cookies={cookies}
+            setCookies={setCookies}
+          />}/>
           <Route path="/auth" element={<Auth />}/>
         </Routes>
       </Router>

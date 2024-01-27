@@ -6,7 +6,7 @@
     margin: 15px;
 }
 
-#nav-div > * {
+.nav-btn {
     margin-right: 10px;
     margin-left: 25px;
     right: 0px;
@@ -15,4 +15,11 @@
     text-decoration: none;
     color: black;
     font-size: 18px;
+    font-family: inherit;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px;
+}
+
+.nav-btn:hover {
+    cursor: pointer;
 }
