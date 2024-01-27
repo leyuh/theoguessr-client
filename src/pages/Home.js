@@ -46,7 +46,7 @@ const Home = (props) => {
 
     const fetchVerseData = async () => {
         try {
-            let res = await axios.get("http://localhost:3001/random-verse/");
+            let res = await axios.get("https://theoguessr-api.onrender.com/random-verse/");
 
             setVerseData(res.data);
         } catch (err) {
