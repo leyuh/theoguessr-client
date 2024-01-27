@@ -13,7 +13,6 @@ div {
 }
 
 .testament-btn {
-    background-color: #003925;
     height: 40px;
     width: 200px;
     text-decoration: none;
@@ -62,12 +61,14 @@ div {
     padding-top: 40px;
     top: -10px;
     position: relative;
+    border: 0px solid;
+    background-color: rgb(0, 0, 0, 0);
 }
 
 #verse-div > h1 {
     text-align: center;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 100;
     margin: 10px;
 }
 
@@ -79,12 +80,11 @@ div {
 }
 #chapter-selection-div {
     padding: 5px;
-    border: 10px solid #003925;
+    border: 10px solid;
     width: calc(100% - 30px);
     height: calc(100% - 30px);
     top: -12.5px;
     overflow: hidden;
-    background-color: #6cbca0;
     overflow-y: scroll;
     overflow-x: hidden;
     position: relative;
@@ -94,7 +94,6 @@ div {
     height: 40px;
     width: 40px;
     background-color: rgba(0, 0, 0, 0);
-    filter: brightness(25%);
     border: 0px;
     position: fixed;
     right: 5px;
@@ -112,8 +111,7 @@ div {
 }
 
 #chapter-context-div {
-    background-color: #6cbca0;
-    border: 10px solid #003925;
+    border: 10px solid;
     height: 500px;
     width: 500px;
     position: relative;
@@ -162,7 +160,6 @@ div {
 #continue-btn {
     width: 120px;
     height: 40px;
-    background-color: #008B5B;
     border-radius: 5px;
     font-family: inherit;
     font-weight: bold;
@@ -171,16 +168,11 @@ div {
     position: relative;
     top: 50px;
     color: #f8fcfb;
-    background-color: #003925;
-    border: 0px solid #f8fcfb;
+    border: 0px solid;
 }
 
 #continue-btn:hover {
     cursor: pointer;
-}
-
-mark {
-    background-color: #008B5B;
 }
 
 #watermark {
@@ -191,7 +183,6 @@ mark {
     position: fixed;
     right: 0px;
     bottom: 0px;
-    color: #003925;
     z-index: -1;
 }
 

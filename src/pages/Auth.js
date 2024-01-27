@@ -186,7 +186,7 @@ const Form = ({
     status,
     setStatus
 }) => {
-    return <div className="auth-container">
+    return <div className="auth-container bg-1 border-0">
         <form onSubmit={onSubmit}>
             <h2>{label}</h2>
 
@@ -206,12 +206,12 @@ const Form = ({
 
             <h5 id="auth-status-label">{status}</h5>
 
-            <button type="submit" className="form-submit-btn auth-btn">{label}</button>
+            <button type="submit" className="form-submit-btn auth-btn bg-2 border-0">{label}</button>
 
         </form>
         
         <h3>{label === "Register" ? "Already have an account?" : "Don't have an account?"}</h3>
-        <button className="auth-btn" onClick={() => {
+        <button className="auth-btn bg-2 border-0" onClick={() => {
             setStatus("");
             if (currAuthDiv === "register") {
                 setCurrAuthDiv("login");

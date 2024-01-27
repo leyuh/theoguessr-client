@@ -19,6 +19,7 @@ const Home = (props) => {
         setCookies
     } = props;
 
+    const [nextVerseData, setNextVerseData] = useLocalStickyState(null, "nextVerseData");
     const [verseData, setVerseData] = useLocalStickyState(null, "verseData");
     const [showGuessDiv, setShowGuessDiv] = useState(true);
     const [bookGuess, setBookGuess] = useLocalStickyState(null, "bookGuess");
@@ -31,7 +32,6 @@ const Home = (props) => {
 
     const MAX_POINTS = 1000;
     const POINTS_PER_BOOK_OFF = 50;
-
 
 
     const calcPoints = (bookGuessed, correctBook) => {
@@ -51,15 +51,22 @@ const Home = (props) => {
         return points;
     }
 
-    const fetchVerseData = async () => {
+    const fetchNextVerseData = async () => {
         try {
             let res = await axios.get("https://theoguessr-api.onrender.com/random-verse/");
 
-            setVerseData(res.data);
+            if (!bookGuess) {
+                console.log("?");
+                setVerseData(res.data);
+            } else {
+                setNextVerseData(res.data);
+            }
+            return res.data;
         } catch (err) {
             console.log(err);
         }
     }
+
 
     // reset guessing
     useEffect(() => {
@@ -74,13 +81,19 @@ const Home = (props) => {
 
     useEffect(() => {
 
-        if (!verseData) {
-            setVerseData(null);
-            fetchVerseData();
+        const setVerse = async () => {
+            let data = await fetchNextVerseData();
+            setVerseData(data);
         }
-        
-        if (localStorage.getItem("bookGuess") !== "null") {
+
+        if (!verseData || !verseData.verseContext) {
+            if (nextVerseData) {
+                setVerseData(nextVerseData);
+            } else {
+                setVerse();
+            }
         }
+
 
         if (!cookies["access_token"]) {
           localStorage.setItem("userId", "");
@@ -94,6 +107,8 @@ const Home = (props) => {
         if (bookGuess) {
 
             setShowGuessDiv(false);
+            console.log("!");
+            fetchNextVerseData();
 
             // update db
             if (cookies["access_token"]) {
@@ -121,27 +136,26 @@ const Home = (props) => {
         <div id="guess-div">
 
             <div id="verse-div">
-                <h1>{verseData ? `"${verseData?.verseContextNoNumbers.replaceAll("¶", ``)}"` : "..."}</h1>
+                <h1 className="text-0">{verseData ? `"${verseData?.verseContextNoNumbers.replaceAll("¶", ``)}"` : "..."}</h1>
             </div>
             <div id="chapter-selection-wrapper">
 
                 <div id="testaments-wrapper">
-                    <button className="testament-btn" id="ot" onClick={() => {
+                    <button className="testament-btn bg-3 border-0" id="ot" onClick={() => {
                         setTestamentSelected("Old Testament");
                     }}>Old Testament</button>
 
-                    <button className="testament-btn" id="nt" onClick={() => {
+                    <button className="testament-btn bg-3 border-0" id="nt" onClick={() => {
                         setTestamentSelected("New Testament");
                     }}>New Testament</button>
                 </div>
                 
 
-                <div id="chapter-selection-div">
+                <div id="chapter-selection-div" className="bg-4 border-3">
                     <BooksGrid 
                         booksNames={testamantSelected === "Old Testament" ? OT : NT}
                         setBookGuess={setBookGuess}
                         verseData={verseData}
-                        fetchVerseData={fetchVerseData}
                     />
                 </div>
             </div>
@@ -151,25 +165,27 @@ const Home = (props) => {
         <div id="results-div">
 
             <div id="continue-div">
-                <h1 id="points-label">{calcPoints(bookGuess, verseData.book.name)}</h1>
-                <h3 id="you-guessed-label">You guessed: {bookGuess}</h3>
+                <h1 id="points-label" className="text-0">{calcPoints(bookGuess, verseData.book.name)}</h1>
+                <h3 id="you-guessed-label" className="text-4">You guessed: {bookGuess}</h3>
             </div>
 
             
 
-            <div id="chapter-context-div" ref={chapterContextRef}>
-                <h1>{verseData.chapter.reference}</h1>
+            <div id="chapter-context-div" className="bg-3 border-0" ref={chapterContextRef}>
+                <h1 className="text-0">{verseData.chapter.reference}</h1>
                 <p>
                     <span>{(verseData.chapter.content.substr(0, verseData.chapter.content.indexOf(verseData.verseContext))).replaceAll("¶", "\n\t")}</span>
-                    <span><mark>{verseData.verseContext.replaceAll("¶", `\n\t`)}</mark></span>
+                    <span><mark className="bg-4">{verseData.verseContext.replaceAll("¶", `\n\t`)}</mark></span>
                     <span>{(verseData.chapter.content.substr((verseData.chapter.content.indexOf(verseData.verseContext)) + verseData.verseContext.length)).replaceAll("¶", "\n\t")}</span>
                 </p>
             
             </div>
 
-            <button id="continue-btn" onClick={() => {
-                setVerseData(null);
-                fetchVerseData();
+            <button id="continue-btn" className="bg-4" onClick={() => {
+                if (nextVerseData) {
+                    setVerseData(nextVerseData);
+                }
+                setNextVerseData(null);
                 setShowGuessDiv(true);
                 setBookGuess(null);
             }}>

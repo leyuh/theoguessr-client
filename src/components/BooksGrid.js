@@ -11,7 +11,7 @@ const BooksGrid = (props) => {
         <div className="chapters-grid">
           {booksNames.map((val, i) => {
             return <button 
-                className="chapter-div" 
+                className="chapter-div bg-3" 
                 key={i} 
                 onClick={() => {
                   if (!verseData) return;

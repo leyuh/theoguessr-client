@@ -19,14 +19,14 @@ const Navbar = (props) => {
 
     return <div id="nav-div">
         {!cookies.access_token ? 
-            <Link to={"/auth"} className="nav-btn"> Login </Link>
+            <Link to={"/auth"} className="nav-btn text-0"> Login </Link>
          : 
             <>
-                <button onClick={logout} className="nav-btn">Logout</button>
+                <button onClick={logout} className="nav-btn text-0">Logout</button>
             </>
         }
         
-        <Link to={"/"} className="nav-btn"> Home </Link>
+        <Link to={"/"} className="nav-btn text-0"> Home </Link>
     </div>
 }
 

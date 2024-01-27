@@ -34,7 +34,7 @@ function App() {
       </Router>
 
       
-    <h5 id="watermark">leyuh</h5>
+    <h5 id="watermark" className="text-2">leyuh</h5>
     </div>
   );
 }
