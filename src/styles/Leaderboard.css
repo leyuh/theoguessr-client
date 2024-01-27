@@ -73,6 +73,12 @@
     margin: 5px;
 }
 
+#leaderboard-disclaimer {
+    top: calc(50% - 40px);
+    position: relative;
+    font-size: 22px;
+}
+
 @media (max-height: 600px) { 
     #leaderboard {
         height: calc(100% - 65px);

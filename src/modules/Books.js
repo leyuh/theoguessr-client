@@ -17,7 +17,7 @@ export const OT = [
     "Nehemiah",
     "Esther",
     "Job",
-    "Psalm",
+    "Psalms",
     "Proverbs",
     "Ecclesiastes",
     "Song of Solomon",

@@ -27,6 +27,9 @@ const Home = (props) => {
 
     const chapterContextRef = useRef(null);
 
+    const MAX_POINTS = 1000;
+    const POINTS_PER_BOOK_OFF = 50;
+
 
 
     const calcPoints = (bookGuessed, correctBook) => {
@@ -41,7 +44,7 @@ const Home = (props) => {
 
         let booksOff = Math.abs(indexGuessed - indexCorrect);
 
-        let points = 1000 - (booksOff*25);
+        let points = Math.max(MAX_POINTS - (booksOff*POINTS_PER_BOOK_OFF), 0);
 
         return points;
     }
@@ -174,6 +177,7 @@ const Home = (props) => {
 
     {showLeaderboard && <Leaderboard 
         setShowLeaderboard={setShowLeaderboard}
+        cookies={cookies}
     />}
     </div>
 

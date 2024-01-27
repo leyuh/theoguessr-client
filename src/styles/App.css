@@ -21,7 +21,7 @@ div {
     margin-right: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     overflow-y: scroll;
     overflow-x: hidden;
     padding-top: 40px;
@@ -154,6 +154,7 @@ mark {
     z-index: -1;
 }
 
+/* TABLET / SMALL MONITOR */
 @media (max-height: 850px) or (max-width: 945px) {
     #logo {
         top: 10px;
@@ -197,6 +198,7 @@ mark {
     }
 }
 
+/* VERTICAL PHONE */
 @media (max-height: 600px) or (max-width: 650px) {
     #logo {
         top: 0px;
@@ -209,16 +211,16 @@ mark {
         width: 340px;
         left: calc(50% - 185px);
         height: 45vh;
-        top: -20px;
+        top: -30px;
         overflow-y: scroll;
         overflow-x: hidden;
     }
 
     #verse-div {
-        height: 155px;
+        height: 175px;
         width: 370px;
-        padding-top: 20px;
-        top: -15px;
+        padding-top: 10px;
+        top: -35px;
     }
 
     #verse-div > h1 {
@@ -251,6 +253,7 @@ mark {
     }
 }
 
+/* HORIZONTAL PHONE */
 @media (max-height: 500px) {
     #logo {
         top: 0px;
@@ -262,14 +265,14 @@ mark {
         height: 150px;
         overflow-y: scroll;
         overflow-x: hidden;
-        top: -50px;
+        top: -45px;
     }
 
     #verse-div {
-        height: 115px;
+        height: 105px;
         width: 570px;
         padding-top: 5px;
-        top: -30px;
+        top: -35px;
     }
 
     #verse-div > h1 {
