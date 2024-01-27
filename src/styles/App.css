@@ -217,7 +217,7 @@ mark {
     #verse-div {
         height: 155px;
         width: 370px;
-        padding-top: 10px;
+        padding-top: 20px;
         top: -15px;
     }
 
@@ -262,14 +262,14 @@ mark {
         height: 150px;
         overflow-y: scroll;
         overflow-x: hidden;
-        top: -55px;
+        top: -50px;
     }
 
     #verse-div {
-        height: 120px;
+        height: 115px;
         width: 570px;
         padding-top: 5px;
-        top: -35px;
+        top: -30px;
     }
 
     #verse-div > h1 {
