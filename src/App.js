@@ -9,7 +9,7 @@ import Navbar from "./components/NavBar.js";
 import Home from "./pages/Home.js";
 import Auth from "./pages/Auth.js";
 
-import Logo from "./logo.png";
+import Logo from "./images/logo.png";
 
 function App() {
 
@@ -20,7 +20,6 @@ function App() {
 
       <Router>
         <Navbar />
-
 
         <img id="logo" src={Logo}/>
 

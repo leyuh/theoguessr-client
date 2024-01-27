@@ -1,0 +1,81 @@
+#leaderboard {
+    background-color: #003925;
+    height: 500px;
+    width: 350px;
+    position: absolute;
+    border: 10px solid #f8fcfb;
+    left: calc(50% - 195px);
+    top: calc(50% - 300px);
+    color: #f8fcfb;
+    padding: 10px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+#leaderboard > .close-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 30px;
+    width: 30px;
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #f8fcfb;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 25px;
+}
+
+#leaderboard > .close-btn:hover {
+    cursor: grab;
+}
+
+#leaderboard > h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+
+#leaderboard-labels {
+    width: calc(100% - 20px);
+    right: -20px;
+    position: relative;
+    margin-bottom: -15px;
+}
+
+#leaderboard-labels > * {
+    display: inline-block;
+    margin: 5px;
+}
+
+.username-label {
+    width: 50%;
+}
+
+.avg-score-label {
+    width: 20%;
+}
+
+.total-points-label {
+    width: 20%;
+}
+
+.leaderboard-item {
+    background-color: #084630;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-left: -20px;
+}
+
+.leaderboard-item > * {
+    display: inline-block;
+    margin: 5px;
+}
+
+@media (max-height: 600px) { 
+    #leaderboard {
+        height: calc(100% - 65px);
+        top: 10px;
+    }
+}

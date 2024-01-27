@@ -5,8 +5,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
+import LeaderboardIcon from "../images/leaderboard-icon.png";
+
 import { OT, NT } from "../modules/Books.js";
 import BooksGrid from "../components/BooksGrid.js";
+import Leaderboard from "../components/Leaderboard.js";
 
 const Home = (props) => {
     const {
@@ -17,6 +20,8 @@ const Home = (props) => {
     const [verseData, setVerseData] = useState(null);
     const [showGuessDiv, setShowGuessDiv] = useState(true);
     const [bookGuess, setBookGuess] = useState(null);
+    const [showLeaderboard, setShowLeaderboard] = useState(false);
+    
 
     const chapterContextRef = useRef(null);
 
@@ -44,7 +49,6 @@ const Home = (props) => {
             let res = await axios.get("http://localhost:3001/random-verse/");
 
             setVerseData(res.data);
-            console.log(res.data);
         } catch (err) {
             console.log(err);
         }
@@ -53,6 +57,7 @@ const Home = (props) => {
     useEffect(() => {
         localStorage.getItem("verseData") && setVerseData(JSON.parse(localStorage.getItem("verseData")));
         localStorage.getItem("bookGuess") && setBookGuess(localStorage.getItem("bookGuess"));
+
     }, [])
 
     useEffect(() => {
@@ -108,6 +113,12 @@ const Home = (props) => {
     }, [bookGuess])
     
     return <div id="home-page">
+        <button id="leaderboard-btn" onClick={() => {
+          setShowLeaderboard(prev => !prev);
+        }}>
+          <img src={LeaderboardIcon} />
+        </button>
+
         {showGuessDiv ? 
         // GUESSING
         <div id="guess-div">
@@ -168,6 +179,10 @@ const Home = (props) => {
 
         </div>
     }
+
+    {showLeaderboard && <Leaderboard 
+        setShowLeaderboard={setShowLeaderboard}
+    />}
     </div>
 
     

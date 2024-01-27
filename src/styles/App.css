@@ -49,6 +49,26 @@ div {
     left: calc(50% - 415px);
 }
 
+#leaderboard-btn {
+    height: 40px;
+    width: 40px;
+    background-color: rgba(0, 0, 0, 0);
+    filter: brightness(25%);
+    border: 0px;
+    position: fixed;
+    right: 5px;
+    top: 5px;
+}
+
+#leaderboard-btn:hover {
+    cursor: pointer;
+}
+
+#leaderboard-btn > img {
+    height: 75%;
+    width: 100%;
+}
+
 #chapter-context-div {
     background-color: #6cbca0;
     border: 10px solid #003925;
@@ -181,7 +201,7 @@ mark {
         top: 0px;
         height: 50px;
         width: 50px;
-        left: calc(50% - 25px);
+        left: 5px;
     }
 
     #chapter-selection-div {
