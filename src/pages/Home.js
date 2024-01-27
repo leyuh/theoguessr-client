@@ -11,15 +11,17 @@ import { OT, NT } from "../modules/Books.js";
 import BooksGrid from "../components/BooksGrid.js";
 import Leaderboard from "../components/Leaderboard.js";
 
+import { useLocalStickyState, useSessionStickyState } from "../hooks/useStickyState.js";
+
 const Home = (props) => {
     const {
         cookies,
         setCookies
     } = props;
 
-    const [verseData, setVerseData] = useState(null);
+    const [verseData, setVerseData] = useLocalStickyState(null, "verseData");
     const [showGuessDiv, setShowGuessDiv] = useState(true);
-    const [bookGuess, setBookGuess] = useState(null);
+    const [bookGuess, setBookGuess] = useLocalStickyState(null, "bookGuess");
     const [showLeaderboard, setShowLeaderboard] = useState(false);
     
 
@@ -54,19 +56,6 @@ const Home = (props) => {
         }
     }
 
-    useEffect(() => {
-        localStorage.getItem("verseData") && setVerseData(JSON.parse(localStorage.getItem("verseData")));
-        localStorage.getItem("bookGuess") && setBookGuess(localStorage.getItem("bookGuess"));
-
-    }, [])
-
-    useEffect(() => {
-        if (verseData) {
-            localStorage.setItem("verseData", JSON.stringify(verseData));
-        }
-    }, [verseData])
-
-
     // reset guessing
     useEffect(() => {
         if (showGuessDiv) {
@@ -79,9 +68,13 @@ const Home = (props) => {
     }, [showGuessDiv])
 
     useEffect(() => {
-        if (localStorage.getItem("bookGuess") !== "null") {
+
+        if (!verseData) {
             setVerseData(null);
             fetchVerseData();
+        }
+        
+        if (localStorage.getItem("bookGuess") !== "null") {
         }
 
         if (!cookies["access_token"]) {
@@ -93,7 +86,6 @@ const Home = (props) => {
 
     // show results on guess
     useEffect(() => {
-        localStorage.setItem("bookGuess", bookGuess);
         if (bookGuess) {
 
             setShowGuessDiv(false);
