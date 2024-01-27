@@ -28,6 +28,7 @@ const Leaderboard = (props) => {
     }
 
     const getAvg = (points) => {
+        if (points.length === 0) return 0;
         return (getTotal(points)/points.length).toFixed(0);
     }
 
@@ -49,10 +50,12 @@ const Leaderboard = (props) => {
 
                 <ol>
                     {userData.sort((a, b) => {
+                        
                         let aAvg = getAvg(a.points);
                         let bAvg = getAvg(b.points);
+
                         if (aAvg > bAvg) return -1;
-                        return 0;
+                        return 1;
                     }).map((val, i) => {
                         return <li className="leaderboard-item bg-3" key={i}>
                             <h3 className="username-label">{val.username}</h3>

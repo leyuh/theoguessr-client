@@ -1,10 +1,10 @@
 #leaderboard {
     background-color: #003925;
     height: 500px;
-    width: 350px;
+    width: 340px;
     position: absolute;
     border: 10px solid #f8fcfb;
-    left: calc(50% - 195px);
+    left: calc(50% - 190px);
     top: calc(50% - 300px);
     color: #f8fcfb;
     padding: 10px;
@@ -47,6 +47,7 @@
 #leaderboard-labels > * {
     display: inline-block;
     margin: 5px;
+    font-size: 12px;
 }
 
 .username-label {
@@ -55,10 +56,12 @@
 
 .avg-score-label {
     width: 20%;
+    font-size: 15px;
 }
 
 .total-points-label {
     width: 20%;
+    font-size: 15px;
 }
 
 .leaderboard-item {
