@@ -62,7 +62,7 @@ const Login = (props) => {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:3001/auth/login", {
+            const res = await axios.post("https://theoguessr-api.onrender.com/auth/login", {
                 username,
                 password
             });
@@ -137,7 +137,7 @@ const Register = (props) => {
         setStatus("");
 
         try {
-            const reg = await axios.post("http://localhost:3001/auth/register", {
+            const reg = await axios.post("https://theoguessr-api.onrender.com/auth/register", {
                 username,
                 password
             });
@@ -147,7 +147,7 @@ const Register = (props) => {
                 return;
             }
 
-            const res = await axios.post("http://localhost:3001/auth/login", {
+            const res = await axios.post("https://theoguessr-api.onrender.com/auth/login", {
                 username,
                 password
             });
