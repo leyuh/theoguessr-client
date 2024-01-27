@@ -100,7 +100,7 @@ const Home = (props) => {
 
             // update db
             if (cookies["access_token"]) {
-                axios.put("http://localhost:3001/user/post-points/", {
+                axios.put("https://theoguessr-api.onrender.com/user/post-points/", {
                     _id: localStorage.getItem("userId"),
                     newPoints: calcPoints(bookGuess, verseData.book.name)
                 }, {
