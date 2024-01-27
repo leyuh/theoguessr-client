@@ -65,8 +65,9 @@ div {
 }
 
 #leaderboard-btn > img {
-    height: 75%;
+    height: 100%;
     width: 100%;
+    object-fit: contain;
 }
 
 #chapter-context-div {
@@ -208,14 +209,16 @@ mark {
         width: 340px;
         left: calc(50% - 185px);
         height: 45vh;
+        top: -20px;
         overflow-y: scroll;
         overflow-x: hidden;
     }
 
     #verse-div {
-        height: 140px;
+        height: 155px;
         width: 370px;
         padding-top: 10px;
+        top: -15px;
     }
 
     #verse-div > h1 {
@@ -259,13 +262,14 @@ mark {
         height: 150px;
         overflow-y: scroll;
         overflow-x: hidden;
-        top: -10px;
+        top: -55px;
     }
 
     #verse-div {
         height: 120px;
-        width: 550px;
-        padding-top: 0px;
+        width: 570px;
+        padding-top: 5px;
+        top: -35px;
     }
 
     #verse-div > h1 {
@@ -273,12 +277,12 @@ mark {
     }
 
     #continue-div {
-        top: -55px;
+        top: -85px;
     }
 
     #chapter-context-div {
-        top: -60px;
-        height: 160px;
+        top: -90px;
+        height: 140px;
         width: 580px;
         left: calc(50% - 310px);
         padding: 10px;
@@ -295,6 +299,6 @@ mark {
     }
 
     #continue-btn {
-        top: -55px;
+        top: -85px;
     }
 }
