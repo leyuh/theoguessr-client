@@ -12,6 +12,41 @@ div {
     top: 40px;
 }
 
+.testament-btn {
+    background-color: #003925;
+    height: 40px;
+    width: 200px;
+    text-decoration: none;
+    color: #f8fcfb;
+    font-family: inherit;
+    border-top-left-radius: 7.5px;
+    border-top-right-radius: 7.5px;
+    border: 2.5px solid #f8fcfb;
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+}
+
+.testament-btn:hover {
+    cursor: grab;
+}
+
+#ot {
+    margin-right: 2.5px;
+    margin-left: auto;
+    float: center;
+}
+#nt {
+    margin-left: 2.5px;
+    margin-right: auto;
+    float: center;
+}
+
+#testaments-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 #verse-div {
     height: 180px;
     text-align: center;
@@ -36,17 +71,23 @@ div {
     margin: 10px;
 }
 
+#chapter-selection-wrapper {
+    width: 830px;
+    height: 500px;
+    position: relative;
+    left: calc(50% - 415px);
+}
 #chapter-selection-div {
     padding: 5px;
     border: 10px solid #003925;
-    width: 800px;
-    height: 530px;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    top: -12.5px;
     overflow: hidden;
     background-color: #6cbca0;
     overflow-y: scroll;
     overflow-x: hidden;
     position: relative;
-    left: calc(50% - 415px);
 }
 
 #leaderboard-btn {
@@ -155,19 +196,19 @@ mark {
 }
 
 /* TABLET / SMALL MONITOR */
-@media (max-height: 850px) or (max-width: 945px) {
+@media (max-height: 890px) or (max-width: 945px) {
     #logo {
         top: 10px;
     }
 
-    #chapter-selection-div {
+
+    #chapter-selection-wrapper {
         width: 600px;
         left: calc(50% - 315px);
         height: 330px;
-        overflow-y: scroll;
-        overflow-x: hidden;
     }
 
+    
     #verse-div {
         height: 150px;
     }
@@ -208,19 +249,30 @@ mark {
     }
 
     #chapter-selection-div {
-        width: 340px;
-        left: calc(50% - 185px);
-        height: 45vh;
-        top: -30px;
         overflow-y: scroll;
         overflow-x: hidden;
     }
 
+    .testament-btn {
+        font-size: 16px;
+    }
+
+    #chapter-selection-wrapper {
+        width: 360px;
+        left: calc(50% - 180px);
+        height: 45vh;
+        top: -25px;
+    }
+
     #verse-div {
-        height: 175px;
+        height: 170px;
         width: 370px;
-        padding-top: 10px;
-        top: -35px;
+        padding-top: 0px;
+        top: -20px;
+    }
+
+    .testament-btn {
+        width: 177.5px;
     }
 
     #verse-div > h1 {
@@ -260,19 +312,22 @@ mark {
     }
 
     #chapter-selection-div {
-        width: 580px;
-        left: calc(50% - 300px);
-        height: 150px;
         overflow-y: scroll;
         overflow-x: hidden;
-        top: -45px;
+    }
+
+    #chapter-selection-wrapper {
+        width: 580px;
+        left: calc(50% - 300px);
+        height: 145px;
+        top: -27.5px;
     }
 
     #verse-div {
-        height: 105px;
+        height: 100px;
         width: 570px;
-        padding-top: 5px;
-        top: -35px;
+        padding-top: 0px;
+        top: -25px;
     }
 
     #verse-div > h1 {

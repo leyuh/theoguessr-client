@@ -2,14 +2,12 @@ import "../styles/BooksGrid.css";
 
 const BooksGrid = (props) => {
     const {
-        title,
         booksNames,
         setBookGuess,
         verseData
     } = props;
 
     return <>
-        <h1 className="section-title">{title}</h1>
         <div className="chapters-grid">
           {booksNames.map((val, i) => {
             return <button 

@@ -2,8 +2,9 @@
     align-items: center;
     justify-content: center;
     display: grid;
-    grid-template-columns: repeat(7, 105px);
+    grid-template-columns: repeat(5, 150px);
     gap: 5px;
+    padding-top: 10px;
 }
 
 .section-title {
@@ -16,7 +17,7 @@
     font-family: inherit;
     background-color: #003925;
     border: 2.5px solid #f8fcfb;
-    width: 100px;
+    width: 150px;
     height: 40px;
     border-radius: 5px;
     text-align: center;
@@ -24,7 +25,7 @@
 }
 
 .chapter-div:hover {
-    cursor: pointer !important;
+    cursor: pointer;
 }
 
 .chapter-div > h1 {
@@ -34,20 +35,41 @@
     top: -10px;
 }
 
-@media (max-height: 850px) or (max-width: 945px) {
+.chapter-div > h1:hover {
+    cursor: pointer;
+}
+
+@media (max-height: 890px) or (max-width: 945px) {
     .chapters-grid {
         grid-template-columns: repeat(5, 105px);
+    }
+    .chapter-div {
+        width: 105px;
     }
 }
 
 @media (max-height: 600px) or (max-width: 650px) {
     .chapters-grid {
-        grid-template-columns: repeat(3, 105px);
+        grid-template-columns: repeat(4, 80px);
+        gap: 4px;
     }
+
+    .chapter-div {
+        width: 80px;
+        height: 35px;
+        
+    }
+
+    .chapter-div > h1 {
+        font-size: 20px;
+    }
+
+
 }
 
 @media (max-height: 500px) {
     .chapters-grid {
-        grid-template-columns: repeat(5, 105px);
+        grid-template-columns: repeat(6, 80px);
+        gap: 5px;
     }
 }

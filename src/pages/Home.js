@@ -23,6 +23,8 @@ const Home = (props) => {
     const [showGuessDiv, setShowGuessDiv] = useState(true);
     const [bookGuess, setBookGuess] = useLocalStickyState(null, "bookGuess");
     const [showLeaderboard, setShowLeaderboard] = useState(false);
+
+    const [testamantSelected, setTestamentSelected] = useState("Old Testament");
     
 
     const chapterContextRef = useRef(null);
@@ -121,24 +123,27 @@ const Home = (props) => {
             <div id="verse-div">
                 <h1>{verseData ? `"${verseData?.verseContextNoNumbers.replaceAll("¶", ``)}"` : "..."}</h1>
             </div>
+            <div id="chapter-selection-wrapper">
 
-            <div id="chapter-selection-div">
-                <BooksGrid 
-                    title="Old Testament"
-                    booksNames={OT}
-                    setBookGuess={setBookGuess}
-                    verseData={verseData}
-                    fetchVerseData={fetchVerseData}
-                />
-                <BooksGrid 
-                    title="New Testament"
-                    booksNames={NT}
-                    setBookGuess={setBookGuess}
-                    verseData={verseData}
-                    fetchVerseData={fetchVerseData}
-                    cookies={cookies}
-                />
+                <div id="testaments-wrapper">
+                    <button className="testament-btn" id="ot" onClick={() => {
+                        setTestamentSelected("Old Testament");
+                    }}>Old Testament</button>
 
+                    <button className="testament-btn" id="nt" onClick={() => {
+                        setTestamentSelected("New Testament");
+                    }}>New Testament</button>
+                </div>
+                
+
+                <div id="chapter-selection-div">
+                    <BooksGrid 
+                        booksNames={testamantSelected === "Old Testament" ? OT : NT}
+                        setBookGuess={setBookGuess}
+                        verseData={verseData}
+                        fetchVerseData={fetchVerseData}
+                    />
+                </div>
             </div>
         </div> 
         : 
