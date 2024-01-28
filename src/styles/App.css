@@ -4,16 +4,9 @@ div {
 }
 
 
-#logo {
-    height: 80px;
-    width: 80px;
-    position: relative;
-    left: calc(50% - 40px);
-    top: 40px;
-}
 
 .testament-btn {
-    height: 40px;
+    height: 37.5px;
     width: 200px;
     text-decoration: none;
     color: #f8fcfb;
@@ -59,10 +52,10 @@ div {
     overflow-y: scroll;
     overflow-x: hidden;
     padding-top: 40px;
-    top: -10px;
+    top: 60px;
     position: relative;
-    border: 0px solid;
-    background-color: rgb(0, 0, 0, 0);
+    border: 2.5px solid #f8fcfb;
+    background-color: rgb(0, 0, 0, 0.7);
 }
 
 #verse-div > h1 {
@@ -77,17 +70,19 @@ div {
     height: 500px;
     position: relative;
     left: calc(50% - 415px);
+    top: 60px;
 }
 #chapter-selection-div {
     padding: 5px;
     border: 10px solid;
     width: calc(100% - 30px);
     height: calc(100% - 30px);
-    top: -12.5px;
+    top: -10px;
     overflow: hidden;
     overflow-y: scroll;
     overflow-x: hidden;
     position: relative;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 #leaderboard-btn {
@@ -97,7 +92,7 @@ div {
     border: 0px;
     position: fixed;
     right: 5px;
-    top: 5px;
+    top: 0px;
 }
 
 #leaderboard-btn:hover {
@@ -145,6 +140,7 @@ div {
     width: 300px;
     height: 100px;
     left: calc(50% - 150px);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 #points-label {
@@ -232,12 +228,6 @@ div {
 
 /* VERTICAL PHONE */
 @media (max-height: 600px) or (max-width: 650px) {
-    #logo {
-        top: 0px;
-        height: 50px;
-        width: 50px;
-        left: 5px;
-    }
 
     #chapter-selection-div {
         overflow-y: scroll;
@@ -252,14 +242,14 @@ div {
         width: 360px;
         left: calc(50% - 180px);
         height: 45vh;
-        top: -25px;
+        top: 40px;
     }
 
     #verse-div {
         height: 170px;
         width: 370px;
         padding-top: 0px;
-        top: -20px;
+        top: 40px;
     }
 
     .testament-btn {
@@ -271,11 +261,11 @@ div {
     }
 
     #continue-div {
-        top: -50px;
+        top: 5px;
     }
 
     #chapter-context-div {
-        top: -50px;
+        top: 10px;
         height: 50vh;
         width: 330px;
         left: calc(50% - 185px);
@@ -292,15 +282,12 @@ div {
     }
 
     #continue-btn {
-        top: -40px;
+        top: 15px;
     }
 }
 
 /* HORIZONTAL PHONE */
 @media (max-height: 500px) {
-    #logo {
-        top: 0px;
-    }
 
     #chapter-selection-div {
         overflow-y: scroll;
@@ -311,14 +298,14 @@ div {
         width: 580px;
         left: calc(50% - 300px);
         height: 145px;
-        top: -27.5px;
+        top: 30px;
     }
 
     #verse-div {
         height: 100px;
         width: 570px;
         padding-top: 0px;
-        top: -25px;
+        top: 35px;
     }
 
     #verse-div > h1 {
@@ -326,16 +313,21 @@ div {
     }
 
     #continue-div {
-        top: -85px;
+        top: 15px;
+        height: 70px;
     }
 
     #chapter-context-div {
-        top: -90px;
-        height: 140px;
+        top: 20px;
+        height: 130px;
         width: 580px;
         left: calc(50% - 310px);
         padding: 10px;
         padding-bottom: 0px;
+    }
+
+    #continue-div > h1 {
+        font-size: 40px;
     }
 
     #chapter-context-div > h1 {
@@ -348,6 +340,6 @@ div {
     }
 
     #continue-btn {
-        top: -85px;
+        top: 25px;
     }
 }

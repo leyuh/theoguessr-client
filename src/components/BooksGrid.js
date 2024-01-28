@@ -4,7 +4,8 @@ const BooksGrid = (props) => {
     const {
         booksNames,
         setBookGuess,
-        verseData
+        verseData,
+        guessBook
     } = props;
 
     return <>
@@ -15,7 +16,7 @@ const BooksGrid = (props) => {
                 key={i} 
                 onClick={() => {
                   if (!verseData) return;
-                    setBookGuess(val);
+                  guessBook(val);
                 }
             }>
               <h1>{val.substring(1, 2) === " " ? val.substring(0, 5) : val.substring(0, 3)}</h1>

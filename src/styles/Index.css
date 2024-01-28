@@ -18,4 +18,16 @@ p:hover { cursor: default; }
     width: 100%;
     border-radius: 0px;
     font-family: "Times New Roman";
+    background-image: url("../images/horizontal-bg.jpeg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* VERTICAL PHONE */
+@media (max-height: 600px) or (max-width: 650px) {
+    #root {
+        background-image: url("../images/vertical-bg.jpeg");
+    }
 }

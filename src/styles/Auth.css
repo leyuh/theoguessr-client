@@ -1,17 +1,23 @@
 .auth-container {
     border: 10px solid #f8fcfb;
     background-color: #003925;
-    height: 250px;
+    height: 255px;
     width: 300px;
     position: relative;
     left: calc(50% - 170px);
-    top: 100px;
+    top: 150px;
     padding: 10px;
     color: white;
 }
 
 .auth-container > form > .form-group {
     margin-bottom: 50px;
+}
+
+#switch-forms-btn {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: 0px;
+    text-decoration: underline;
 }
 
 .auth-container > form > .form-group > input {

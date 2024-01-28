@@ -1,16 +1,27 @@
 #nav-div {
-    height: 30px;
-    width: 250px;
+    height: 40px;
+    width: 100vw;
     position: fixed;
-    right: 35px;
-    margin: 15px;
+    right: 0px;
+    top: 0px;
+    border-radius: 0px;
     overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#logo {
+    height: 45px;
+    top: -2.5px;
+    margin-left: 5px;
+    width: 50px;
+    position: relative;
+    object-fit: contain;
 }
 
 .nav-btn {
     margin-right: 10px;
-    margin-left: 25px;
-    right: 0px;
+    margin-left: 50px;
+    right: 60px;
     position: relative;
     float: right;
     text-decoration: none;
@@ -19,6 +30,7 @@
     font-family: inherit;
     background-color: rgba(0, 0, 0, 0);
     border: 0px;
+    top: 12.5px;
 }
 
 .nav-btn:hover {

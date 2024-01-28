@@ -59,6 +59,7 @@ const Login = (props) => {
 
 
     const onSubmit = async (e) => {
+        console.log("!");
         e.preventDefault();
 
         try {
@@ -211,7 +212,7 @@ const Form = ({
         </form>
         
         <h3>{label === "Register" ? "Already have an account?" : "Don't have an account?"}</h3>
-        <button className="auth-btn bg-2 border-0" onClick={() => {
+        <button className="auth-btn bg-2 border-0" id="switch-forms-btn" onClick={() => {
             setStatus("");
             if (currAuthDiv === "register") {
                 setCurrAuthDiv("login");

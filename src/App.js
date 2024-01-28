@@ -1,15 +1,15 @@
 import "./styles/App.css";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 import Navbar from "./components/NavBar.js";
 import Home from "./pages/Home.js";
 import Auth from "./pages/Auth.js";
 
-import Logo from "./images/logo.png";
 
 function App() {
 
@@ -22,7 +22,6 @@ function App() {
       <Router>
         <Navbar />
 
-        <img id="logo" src={Logo}/>
 
         <Routes>
           <Route path="/" element={<Home 

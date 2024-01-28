@@ -3,6 +3,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 import "../styles/NavBar.css";
+import Logo from "../images/logo.png";
 
 const Navbar = (props) => {
     const {
@@ -26,7 +27,9 @@ const Navbar = (props) => {
             </>
         }
         
-        <Link to={"/"} className="nav-btn text-0"> Home </Link>
+        <Link to={"/"}>
+            <img id="logo" src={Logo}/>
+        </Link>
     </div>
 }
 

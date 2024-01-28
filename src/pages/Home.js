@@ -21,7 +21,7 @@ const Home = (props) => {
 
     const [nextVerseData, setNextVerseData] = useLocalStickyState(null, "nextVerseData");
     const [verseData, setVerseData] = useLocalStickyState(null, "verseData");
-    const [showGuessDiv, setShowGuessDiv] = useState(true);
+    const [showGuessDiv, setShowGuessDiv] = useLocalStickyState(true);
     const [bookGuess, setBookGuess] = useLocalStickyState(null, "bookGuess");
     const [showLeaderboard, setShowLeaderboard] = useState(false);
 
@@ -71,6 +71,7 @@ const Home = (props) => {
     // reset guessing
     useEffect(() => {
         if (showGuessDiv) {
+            console.log("!!");
             setBookGuess(null);
         }
         if (chapterContextRef.current) {
@@ -86,11 +87,13 @@ const Home = (props) => {
             setVerseData(data);
         }
 
-        if (!verseData || !verseData.verseContext) {
-            if (nextVerseData) {
-                setVerseData(nextVerseData);
-            } else {
-                setVerse();
+        if (showGuessDiv) {
+            if (!verseData || !verseData.verseContext) {
+                if (nextVerseData) {
+                    setVerseData(nextVerseData);
+                } else {
+                    setVerse();
+                }
             }
         }
 
@@ -101,29 +104,25 @@ const Home = (props) => {
 
     }, [])
 
+    const guessBook = (guess) => {
+        setBookGuess(guess);
+        setShowGuessDiv(false);
+        console.log("!");
+        fetchNextVerseData();
 
-    // show results on guess
-    useEffect(() => {
-        if (bookGuess) {
-
-            setShowGuessDiv(false);
-            console.log("!");
-            fetchNextVerseData();
-
-            // update db
-            if (cookies["access_token"]) {
-                axios.put("https://theoguessr-api.onrender.com/user/post-points/", {
-                    _id: localStorage.getItem("userId"),
-                    newPoints: calcPoints(bookGuess, verseData.book.name)
-                }, {
-                    headers: {
-                        "authorization": cookies.access_token
-                    }
-                })
-            }
+        // update db
+        if (cookies["access_token"]) {
+            axios.put("https://theoguessr-api.onrender.com/user/post-points/", {
+                _id: localStorage.getItem("userId"),
+                newPoints: calcPoints(guess, verseData.book.name)
+            }, {
+                headers: {
+                    "authorization": cookies.access_token
+                }
+            })
         }
-    }, [bookGuess])
-    
+    }
+
     return <div id="home-page">
         <button id="leaderboard-btn" onClick={() => {
           setShowLeaderboard(prev => !prev);
@@ -151,11 +150,12 @@ const Home = (props) => {
                 </div>
                 
 
-                <div id="chapter-selection-div" className="bg-4 border-3">
+                <div id="chapter-selection-div" className="border-3">
                     <BooksGrid 
                         booksNames={testamantSelected === "Old Testament" ? OT : NT}
                         setBookGuess={setBookGuess}
                         verseData={verseData}
+                        guessBook={guessBook}
                     />
                 </div>
             </div>
@@ -166,7 +166,7 @@ const Home = (props) => {
 
             <div id="continue-div">
                 <h1 id="points-label" className="text-0">{calcPoints(bookGuess, verseData.book.name)}</h1>
-                <h3 id="you-guessed-label" className="text-4">You guessed: {bookGuess}</h3>
+                <h3 id="you-guessed-label" className="text-3">You guessed: {bookGuess}</h3>
             </div>
 
             
@@ -181,7 +181,7 @@ const Home = (props) => {
             
             </div>
 
-            <button id="continue-btn" className="bg-4" onClick={() => {
+            <button id="continue-btn" className="bg-1" onClick={() => {
                 if (nextVerseData) {
                     setVerseData(nextVerseData);
                 }

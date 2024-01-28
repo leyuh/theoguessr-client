@@ -32,7 +32,7 @@ const Leaderboard = (props) => {
         return (getTotal(points)/points.length).toFixed(0);
     }
 
-    return <div id="leaderboard" className="bg-2 border-0">
+    return <div id="leaderboard" className="bg-1 border-0">
 
         <button className="close-btn" onClick={() => {
             setShowLeaderboard(false);
@@ -57,7 +57,7 @@ const Leaderboard = (props) => {
                         if (aAvg > bAvg) return -1;
                         return 1;
                     }).map((val, i) => {
-                        return <li className="leaderboard-item bg-3" key={i}>
+                        return <li className="leaderboard-item bg-2" key={i}>
                             <h3 className="username-label">{val.username}</h3>
                             <h5 className="avg-score-label">{getAvg(val.points)}</h5>
                             <h5 className="total-points-label">{getTotal(val.points)}</h5>
