@@ -51,12 +51,12 @@ const Home = (props) => {
         return points;
     }
 
-    const fetchNextVerseData = async () => {
+    const fetchNextVerseData = async (currGuess) => {
         try {
             let res = await axios.get("https://theoguessr-api.onrender.com/random-verse/");
 
-            if (!bookGuess) {
-                console.log("?");
+            if (!currGuess) {
+
                 setVerseData(res.data);
             } else {
                 setNextVerseData(res.data);
@@ -82,7 +82,7 @@ const Home = (props) => {
     useEffect(() => {
 
         const setVerse = async () => {
-            let data = await fetchNextVerseData();
+            let data = await fetchNextVerseData(bookGuess);
             setVerseData(data);
         }
 
@@ -103,10 +103,10 @@ const Home = (props) => {
 
     }, [])
 
-    const guessBook = (guess) => {
+    const guessBook = async (guess) => {
         setBookGuess(guess);
         setShowGuessDiv(false);
-        fetchNextVerseData();
+        fetchNextVerseData(guess);
 
         // update db
         if (cookies["access_token"]) {
