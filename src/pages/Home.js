@@ -21,7 +21,7 @@ const Home = (props) => {
 
     const [nextVerseData, setNextVerseData] = useLocalStickyState(null, "nextVerseData");
     const [verseData, setVerseData] = useLocalStickyState(null, "verseData");
-    const [showGuessDiv, setShowGuessDiv] = useLocalStickyState(true);
+    const [showGuessDiv, setShowGuessDiv] = useLocalStickyState(true, "showGuessDiv");
     const [bookGuess, setBookGuess] = useLocalStickyState(null, "bookGuess");
     const [showLeaderboard, setShowLeaderboard] = useState(false);
 
@@ -71,7 +71,6 @@ const Home = (props) => {
     // reset guessing
     useEffect(() => {
         if (showGuessDiv) {
-            console.log("!!");
             setBookGuess(null);
         }
         if (chapterContextRef.current) {
@@ -107,7 +106,6 @@ const Home = (props) => {
     const guessBook = (guess) => {
         setBookGuess(guess);
         setShowGuessDiv(false);
-        console.log("!");
         fetchNextVerseData();
 
         // update db
