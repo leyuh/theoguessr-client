@@ -183,11 +183,7 @@ div {
 }
 
 /* TABLET / SMALL MONITOR */
-@media (max-height: 890px) or (max-width: 945px) {
-    #logo {
-        top: 10px;
-    }
-
+@media (max-height: 900px) or (max-width: 1200px) {
 
     #chapter-selection-wrapper {
         width: 600px;
@@ -205,12 +201,12 @@ div {
     }
 
     #continue-div {
-        top: -50px;
+        top: 5px;
     }
 
     #chapter-context-div {
-        top: -50px;
-        height: 300px;
+        top: 20px;
+        height: calc(70vh - 100px);
     }
 
     #chapter-context-div > h1 {
@@ -222,12 +218,12 @@ div {
     }
 
     #continue-btn {
-        top: -30px;
+        top: 30px;
     }
 }
 
 /* VERTICAL PHONE */
-@media (max-height: 600px) or (max-width: 650px) {
+@media (max-height: 1000px) and (max-width: 600px) {
 
     #chapter-selection-div {
         overflow-y: scroll;
@@ -254,10 +250,11 @@ div {
 
     .testament-btn {
         width: 177.5px;
+        font-size: 18px;
     }
 
     #verse-div > h1 {
-        font-size: 15px;
+        font-size: 18px;
     }
 
     #continue-div {
@@ -287,7 +284,7 @@ div {
 }
 
 /* HORIZONTAL PHONE */
-@media (max-height: 500px) {
+@media (max-height: 600px) and (min-width: 600px) {
 
     #chapter-selection-div {
         overflow-y: scroll;
@@ -309,7 +306,7 @@ div {
     }
 
     #verse-div > h1 {
-        font-size: 15px;
+        font-size: 18px;
     }
 
     #continue-div {

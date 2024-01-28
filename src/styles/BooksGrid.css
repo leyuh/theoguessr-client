@@ -39,7 +39,8 @@
     cursor: pointer;
 }
 
-@media (max-height: 890px) or (max-width: 945px) {
+/* SMALL MONITOR / TABLET */
+@media (max-height: 900px) or (max-width: 1200px) {
     .chapters-grid {
         grid-template-columns: repeat(5, 105px);
     }
@@ -48,7 +49,8 @@
     }
 }
 
-@media (max-height: 600px) or (max-width: 650px) {
+/* VERTICAL PHONE */
+@media (max-height: 1000px) and (max-width: 600px) {
     .chapters-grid {
         grid-template-columns: repeat(4, 80px);
         gap: 4px;
@@ -67,7 +69,8 @@
 
 }
 
-@media (max-height: 500px) {
+/* HORIZONTAL PHONE */
+@media (max-height: 600px) and (min-width: 600px) {
     .chapters-grid {
         grid-template-columns: repeat(6, 80px);
         gap: 5px;
