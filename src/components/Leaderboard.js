@@ -14,7 +14,6 @@ const Leaderboard = (props) => {
     useEffect(() => {
         const fetchUsers = async () => {
             let res = await axios.get("https://theoguessr-api.onrender.com/user/get-users/");
-            console.log(res.data);
             setUserData(res.data);
         }
 

@@ -83,9 +83,9 @@
 }
 
 /* VERTICAL PHONE */
-@media (max-height: 1000px) { 
+@media (max-height: 1000px) and (max-width: 600px) { 
     #leaderboard {
-        height: calc(100% - 65px);
+        height: calc(100vh - 85px);
         top: 10px;
     }
 }
