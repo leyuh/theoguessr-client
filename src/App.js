@@ -14,19 +14,22 @@ import Auth from "./pages/Auth.js";
 function App() {
 
   const [cookies, setCookies] = useCookies(["access_token"]);
-
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <div id="app">
 
       <Router>
-        <Navbar />
-
-
+        <Navbar 
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+        />
         <Routes>
           <Route path="/" element={<Home 
             cookies={cookies}
             setCookies={setCookies}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
           />}/>
           <Route path="/auth" element={<Auth />}/>
         </Routes>

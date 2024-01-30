@@ -7,7 +7,8 @@ import Logo from "../images/logo.png";
 
 const Navbar = (props) => {
     const {
-
+        isPlaying,
+        setIsPlaying
     } = props;
 
     const [cookies, setCookies] = useCookies(["access_token"]);
@@ -28,7 +29,9 @@ const Navbar = (props) => {
         }
         
         <Link to={"/"}>
-            <img id="logo" src={Logo}/>
+            <img id="logo" src={Logo} onClick={() => {
+                setIsPlaying(false);
+            }}/>
         </Link>
     </div>
 }

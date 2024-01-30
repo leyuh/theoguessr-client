@@ -16,7 +16,9 @@ import { useLocalStickyState, useSessionStickyState } from "../hooks/useStickySt
 const Home = (props) => {
     const {
         cookies,
-        setCookies
+        setCookies,
+        isPlaying,
+        setIsPlaying
     } = props;
 
     const [nextVerseData, setNextVerseData] = useLocalStickyState(null, "nextVerseData");
@@ -128,71 +130,84 @@ const Home = (props) => {
           <img src={LeaderboardIcon} />
         </button>
 
-        {showGuessDiv ? 
-        // GUESSING
-        <div id="guess-div">
-
-            <div id="verse-div">
-                <h1 className="text-0">{verseData ? `"${verseData?.verseContextNoNumbers.replaceAll("¶", ``)}"` : "..."}</h1>
+        {!isPlaying ? <div id="intro-div">
+            
+            <div id="instructions-div" className="text-0">
+                <p>Welcome to TheoGuessr, the ultimate game to get to know the Word! In this game, you will be shown 2-3 Bible verses. Your task is to identify which book of the Bible the passage comes from, and you will get scored based on how close your guess was.</p>
             </div>
-            <div id="chapter-selection-wrapper">
 
-                <div id="testaments-wrapper">
-                    <button className="testament-btn bg-3 border-0" id="ot" onClick={() => {
-                        setTestamentSelected("Old Testament");
-                    }}>Old Testament</button>
+            <button id="play-btn" className="bg-1 text-0" onClick={() => {
+                setIsPlaying(true);
+            }}>PLAY</button>
 
-                    <button className="testament-btn bg-3 border-0" id="nt" onClick={() => {
-                        setTestamentSelected("New Testament");
-                    }}>New Testament</button>
-                </div>
+        </div> : <div id="playing-div">
+            {showGuessDiv ? 
+                // GUESSING
+                <div id="guess-div">
+
+                    <div id="verse-div">
+                        <h1 className="text-0">{verseData ? `"${verseData?.verseContextNoNumbers.replaceAll("¶", ``)}"` : "..."}</h1>
+                    </div>
+                    <div id="chapter-selection-wrapper">
+
+                        <div id="testaments-wrapper">
+                            <button className="testament-btn bg-3 border-0" id="ot" onClick={() => {
+                                setTestamentSelected("Old Testament");
+                            }}>Old Testament</button>
+
+                            <button className="testament-btn bg-3 border-0" id="nt" onClick={() => {
+                                setTestamentSelected("New Testament");
+                            }}>New Testament</button>
+                        </div>
+                        
+
+                        <div id="chapter-selection-div" className="border-3">
+                            <BooksGrid 
+                                booksNames={testamantSelected === "Old Testament" ? OT : NT}
+                                setBookGuess={setBookGuess}
+                                verseData={verseData}
+                                guessBook={guessBook}
+                            />
+                        </div>
+                    </div>
+                </div> 
+            : 
+                // RESULTS
+                <div id="results-div">
+
+                    <div id="continue-div">
+                        <h1 id="points-label" className="text-0">{calcPoints(bookGuess, verseData.book.name)}</h1>
+                        <h3 id="you-guessed-label" className="text-3">You guessed: {bookGuess}</h3>
+                    </div>
+
+                    
+
+                    <div id="chapter-context-div" className="bg-3 border-0" ref={chapterContextRef}>
+                        <h1 className="text-0">{verseData.chapter.reference}</h1>
+                        <p>
+                            <span>{(verseData.chapter.content.substr(0, verseData.chapter.content.indexOf(verseData.verseContext))).replaceAll("¶", "\n\t")}</span>
+                            <span><mark className="bg-4">{verseData.verseContext.replaceAll("¶", `\n\t`)}</mark></span>
+                            <span>{(verseData.chapter.content.substr((verseData.chapter.content.indexOf(verseData.verseContext)) + verseData.verseContext.length)).replaceAll("¶", "\n\t")}</span>
+                        </p>
+                    
+                    </div>
+
+                    <button id="continue-btn" className="bg-1" onClick={() => {
+                        if (nextVerseData) {
+                            setVerseData(nextVerseData);
+                        }
+                        setNextVerseData(null);
+                        setShowGuessDiv(true);
+                        setBookGuess(null);
+                    }}>
+                        Continue
+                    </button>
                 
 
-                <div id="chapter-selection-div" className="border-3">
-                    <BooksGrid 
-                        booksNames={testamantSelected === "Old Testament" ? OT : NT}
-                        setBookGuess={setBookGuess}
-                        verseData={verseData}
-                        guessBook={guessBook}
-                    />
-                </div>
-            </div>
-        </div> 
-        : 
-        // RESULTS
-        <div id="results-div">
-
-            <div id="continue-div">
-                <h1 id="points-label" className="text-0">{calcPoints(bookGuess, verseData.book.name)}</h1>
-                <h3 id="you-guessed-label" className="text-3">You guessed: {bookGuess}</h3>
-            </div>
-
-            
-
-            <div id="chapter-context-div" className="bg-3 border-0" ref={chapterContextRef}>
-                <h1 className="text-0">{verseData.chapter.reference}</h1>
-                <p>
-                    <span>{(verseData.chapter.content.substr(0, verseData.chapter.content.indexOf(verseData.verseContext))).replaceAll("¶", "\n\t")}</span>
-                    <span><mark className="bg-4">{verseData.verseContext.replaceAll("¶", `\n\t`)}</mark></span>
-                    <span>{(verseData.chapter.content.substr((verseData.chapter.content.indexOf(verseData.verseContext)) + verseData.verseContext.length)).replaceAll("¶", "\n\t")}</span>
-                </p>
-            
-            </div>
-
-            <button id="continue-btn" className="bg-1" onClick={() => {
-                if (nextVerseData) {
-                    setVerseData(nextVerseData);
-                }
-                setNextVerseData(null);
-                setShowGuessDiv(true);
-                setBookGuess(null);
-            }}>
-                Continue
-            </button>
+                </div>  
+            }
+        </div>}
         
-
-        </div>
-    }
 
     {showLeaderboard && <Leaderboard 
         setShowLeaderboard={setShowLeaderboard}

@@ -3,7 +3,39 @@ div {
     border-radius: 15px;
 }
 
+#instructions-div {
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 200px;
+    width: 350px;
+    position: relative;
+    left: calc(50vw - 205px);
+    top: calc(45vh - 115px);
+    padding: 15px 30px;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
+#play-btn {
+    display: block;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 18px;
+    left: calc(50% - 60px);
+    position: relative;
+    top: calc(45vh - 100px);
+    border: 0px solid;
+}
+
+#play-btn:hover {
+    cursor: pointer;
+}
 
 .testament-btn {
     height: 37.5px;
@@ -60,7 +92,7 @@ div {
 
 #verse-div > h1 {
     text-align: center;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 100;
     margin: 10px;
 }
@@ -113,7 +145,7 @@ div {
     padding: 10px 20px;
     overflow-y: scroll;
     overflow-x: hidden;
-    left: calc(50% - 290px);
+    left: calc(50% - 285px);
     top: 30px;
 }
 
@@ -125,7 +157,7 @@ div {
 
 #chapter-context-div > p {
     text-indent: 15px;
-    font-size: 18px;
+    font-size: 20px;
     position: relative;
 }
 
@@ -160,7 +192,7 @@ div {
     font-family: inherit;
     font-weight: bold;
     font-size: 18px;
-    left: calc(50% - 65px);
+    left: calc(50% - 60px);
     position: relative;
     top: 50px;
     color: #f8fcfb;
@@ -187,17 +219,13 @@ div {
 
     #chapter-selection-wrapper {
         width: 600px;
-        left: calc(50% - 315px);
+        left: calc(50% - 300px);
         height: calc(80vh - 200px);
     }
 
     
     #verse-div {
         height: 150px;
-    }
-
-    #verse-div > h1 {
-        font-size: 18px;
     }
 
     #continue-div {
@@ -213,9 +241,6 @@ div {
         margin: 10px;
     }
 
-    #chapter-context-div > p {
-        font-size: 16px;
-    }
 
     #continue-btn {
         top: 30px;
@@ -224,6 +249,11 @@ div {
 
 /* VERTICAL PHONE */
 @media (max-height: 1000px) and (max-width: 600px) {
+
+    #instructions-div {
+        width: 300px;
+        left: calc(50% - 180px);
+    }
 
     #chapter-selection-div {
         overflow-y: scroll;
@@ -254,7 +284,7 @@ div {
     }
 
     #verse-div > h1 {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     #continue-div {
@@ -275,7 +305,8 @@ div {
     }
 
     #chapter-context-div > p {
-        font-size: 16px;
+        font-size: 18px;
+        text-indent: 2.5px;
     }
 
     #continue-btn {
@@ -306,7 +337,7 @@ div {
     }
 
     #verse-div > h1 {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     #continue-div {
@@ -328,12 +359,12 @@ div {
     }
 
     #chapter-context-div > h1 {
-        margin: 0px 0px -10px 0px;
-        font-size: 16px;
+        margin: 5px 0px -15px 0px;
+        font-size: 20px;
     }
 
     #chapter-context-div > p {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     #continue-btn {
