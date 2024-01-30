@@ -188,7 +188,7 @@ div {
     #chapter-selection-wrapper {
         width: 600px;
         left: calc(50% - 315px);
-        height: 330px;
+        height: calc(80vh - 200px);
     }
 
     
@@ -294,7 +294,7 @@ div {
     #chapter-selection-wrapper {
         width: 580px;
         left: calc(50% - 300px);
-        height: 145px;
+        height: calc(75vh - 150px);
         top: 30px;
     }
 

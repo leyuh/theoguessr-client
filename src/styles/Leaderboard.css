@@ -85,7 +85,15 @@
 /* VERTICAL PHONE */
 @media (max-height: 1000px) and (max-width: 600px) { 
     #leaderboard {
-        height: calc(100vh - 85px);
+        height: calc(90vh - 85px);
+        top: 10px;
+    }
+}
+
+/* HORIZONTAL PHONE */
+@media (max-height: 600px) and (min-width: 600px) {
+    #leaderboard {
+        height: calc(90vh - 75px);
         top: 10px;
     }
 }
